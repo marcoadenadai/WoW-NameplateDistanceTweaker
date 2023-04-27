@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-c -Wall -I headers
-LDFLAGS=-mwindows -lcomctl32
+LDFLAGS=-mwindows -lcomctl32 -static -static-libgcc -static-libstdc++
 SOURCES=src/main.cpp src/memhacking.cpp
 OBJECTS=$(addprefix obj/,$(notdir $(SOURCES:.cpp=.o)))
 EXECUTABLE=Tbc243_Tweaks
