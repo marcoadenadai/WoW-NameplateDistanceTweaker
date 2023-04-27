@@ -1,10 +1,7 @@
 #include "memhacking.hpp"
-#include <Windows.h>
-//#include <string>
 #include <tlhelp32.h>
-#include <vector>
 #include <psapi.h>
-#include <fstream>
+
 #include <string>
 
 /*
@@ -57,24 +54,7 @@ uintptr_t GetModuleBaseAddress(DWORD dwProcID, char* szModuleName)
 */
 int SetNameplateMaxDistance(int dist)
 {
-    HANDLE hToken;
-    TOKEN_PRIVILEGES tokenPrivileges;
     DWORD pid, access = PROCESS_VM_READ | PROCESS_QUERY_INFORMATION | PROCESS_VM_WRITE | PROCESS_VM_OPERATION;
-
-    // Obtain a handle to the current process's access token
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
-        return -1;
-
-    // Lookup the privilege ID for the SE_DEBUG_NAME privilege
-    if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &tokenPrivileges.Privileges[0].Luid))
-        return -2;
-
-    tokenPrivileges.PrivilegeCount = 1;
-    tokenPrivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    // Enable the SE_DEBUG_NAME privilege
-    if (!AdjustTokenPrivileges(hToken, FALSE, &tokenPrivileges, sizeof(TOKEN_PRIVILEGES), NULL, NULL))
-        return -3;
 
     vector<DWORD> pids = GetPIDS();
     if(pids.size() <= 0)
@@ -87,10 +67,11 @@ int SetNameplateMaxDistance(int dist)
         if(!proc_handle)
             return pid;
 
+        //DWORD nameplateAddr = 0x00BA4B90;  //12209040; (INT)
         //float ptr;
         //ReadProcessMemory(proc_handle, (void*)nameplateAddr, &ptr, sizeof(ptr), NULL);
         
-        float tmp = (float)dist * 100;
+        float tmp = (float)dist * 20;
         DWORD nameplateAddr = 0x00BA4B90;  //12209040; (INT)
         WriteProcessMemory(proc_handle, (void*)(nameplateAddr), &tmp, sizeof(tmp), NULL);
     }

@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <Windows.h>
 
 using namespace std;
 
 //
-std::vector<DWORD> GetPIDS();
+vector<DWORD> GetPIDS();
 
 //
 uintptr_t GetModuleBaseAddress(DWORD dwProcID, char* szModuleName);

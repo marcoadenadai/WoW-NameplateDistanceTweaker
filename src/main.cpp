@@ -10,6 +10,10 @@
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+void showError(const std::string& message) {
+    MessageBoxA(NULL, message.c_str(), "ERROR", MB_ICONERROR);
+}
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     WNDCLASS wc = {0};
@@ -38,7 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     // Create the trackbar.
     InitCommonControls();
     HWND hTrackbar = CreateWindowEx(0, TRACKBAR_CLASS, NULL, WS_CHILD | WS_VISIBLE | TBS_HORZ, 15, 20, 250, 30, hwnd, (HMENU)ID_TRACKBAR, hInstance, NULL);
-    SendMessage(hTrackbar, TBM_SETRANGE, TRUE, MAKELPARAM(5, 100));
+    SendMessage(hTrackbar, TBM_SETRANGE, TRUE, MAKELPARAM(5, 500));
     SendMessage(hTrackbar, TBM_SETPOS, TRUE, 35);
 
     // Create the label text component.
@@ -64,8 +68,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case WM_COMMAND:
             if (LOWORD(wParam) == ID_BUTTON) {
                 // Handle button click event.
-                int yards = SendMessage((HWND)lParam, TBM_GETPOS, 0, 0);
-                SetNameplateMaxDistance(yards);
+                HWND hTrackbar = GetDlgItem(hwnd, ID_TRACKBAR);
+                int yards = SendMessage(hTrackbar, TBM_GETPOS, 0, 0);
+                int retval = SetNameplateMaxDistance(yards);
+                if(retval!=0)
+                    showError(to_string(retval));
             }
             break;
 
@@ -91,6 +98,31 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 int main()
 {
+    HANDLE hToken;
+    TOKEN_PRIVILEGES tokenPrivileges;
+
+    // Obtain a handle to the current process's access token
+    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken)){
+        showError(to_string(-1));
+        return -1;
+    }
+
+    // Lookup the privilege ID for the SE_DEBUG_NAME privilege
+    if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &tokenPrivileges.Privileges[0].Luid)){
+        showError(to_string(-2));
+        return -2;
+    }
+
+    tokenPrivileges.PrivilegeCount = 1;
+    tokenPrivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+    // Enable the SE_DEBUG_NAME privilege
+    if (!AdjustTokenPrivileges(hToken, FALSE, &tokenPrivileges, sizeof(TOKEN_PRIVILEGES), NULL, NULL)){
+        showError(to_string(-3));
+        return -3;
+    }
+
+
     HINSTANCE hInstance = GetModuleHandle(NULL);
     int nCmdShow = SW_SHOWDEFAULT;
 
