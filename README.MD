@@ -1,4 +1,4 @@
-World of Warcraft 2.4.3 TBC - Tweaks Tool
+# World of Warcraft 2.4.3 TBC - Tweaks Tool
 
 Tool to change Nameplate display distance for WoW client version 2.4.3 (The Burning Crusader). It works on all private servers that use the original client, check your server's usage rules before using this tool - in some cases it may result in banning.
 
