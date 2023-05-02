@@ -9,7 +9,7 @@ Note: The distance measurement unit used here is called yards, but it is importa
 ## Prerequisites for development
 - Windows OS (Tested on Windows 10)
 - MinGW ([Get Started with C++ and Mingw in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-mingw))
-- msys64, g++, make
+- msys64, g++, make, windres
 - Compile using: ```make```
 
 ## Demo
