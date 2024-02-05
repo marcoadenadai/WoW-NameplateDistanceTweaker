@@ -7,6 +7,9 @@ This tool uses memory hacking techniques, changing the value of the game's memor
 
 Note: The distance measurement unit used here is called yards, but the distance value is an approximation. I recommend trying different values until you find one that fits for you.
 
+## Download
+[Latest Releases](https://github.com/marcoadenadai/WoW-NameplateDistanceTweaker/releases)
+
 ## Prerequisites for development
 - Windows OS (Tested on Windows 10)
 - MinGW ([Get Started with C++ and Mingw in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-mingw))
@@ -16,5 +19,3 @@ Note: The distance measurement unit used here is called yards, but the distance 
 ## Demo
 ![GUI Tweaking Nameplate Max Distance Image using ElvUI](https://github.com/marcoadenadai/wow-tbc-243-tweaks/raw/main/demo.png)
 
-## Download
-[Latest Releases](https://github.com/marcoadenadai/WoW-NameplateDistanceTweaker/releases)
