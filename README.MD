@@ -15,3 +15,6 @@ Note: The distance measurement unit used here is called yards, but the distance 
 
 ## Demo
 ![GUI Tweaking Nameplate Max Distance Image using ElvUI](https://github.com/marcoadenadai/wow-tbc-243-tweaks/raw/main/demo.png)
+
+## Download
+[Latest Releases](https://github.com/seu-usuario/seu-repositorio/releases)
