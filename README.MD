@@ -1,9 +1,9 @@
 # World of Warcraft v2.4.3 SetNameplateDistance Tweaker Tool.
 
 Created to change the distance of nameplates since in this client version it is not possible to do so natively. 
-It works on all private servers that uses the original client, *check your server's usage rules before using this tool.*
+It works on all private servers that uses the original client, **check your server's usage rules before using this tool.**
 
-This tool uses memory hacking techniques, changing the value of the game's memory address referring to the display distance of the nameplates. *Requires administrative permission.*
+This tool uses memory hacking techniques, changing the value of the game's memory address referring to the display distance of the nameplates. **Requires administrative permission.**
 
 Note: The distance measurement unit used here is called yards, but the distance value is an approximation. I recommend trying different values until you find one that fits for you.
 
