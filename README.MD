@@ -1,10 +1,11 @@
-# World of Warcraft 2.4.3 TBC - Tweaks Tool
+# World of Warcraft v2.4.3 SetNameplateDistance Tweaker Tool.
 
-Tool to change Nameplate display distance for WoW client version 2.4.3 (The Burning Crusader). It works on all private servers that use the original client, check your server's usage rules before using this tool - in some cases it may result in banning.
+Created to change the distance of nameplates since in this client version it is not possible to do so natively. 
+It works on all private servers that uses the original client, *check your server's usage rules before using this tool.*
 
-This tool uses memory hacking techniques, changing the value of the game's memory address referring to the display distance of the nameplates and therefore requires administrative permission. Part of this code is for generating a manifest to ensure that the compiled output will run with administrator privileges.
+This tool uses memory hacking techniques, changing the value of the game's memory address referring to the display distance of the nameplates. *Requires administrative permission.*
 
-Note: The distance measurement unit used here is called yards, but it is important to mention that it is an approximation assuming that the default distance of nampletes is equal to 20 yards in game.
+Note: The distance measurement unit used here is called yards, but the distance value is an approximation. I recommend trying different values until you find one that fits for you.
 
 ## Prerequisites for development
 - Windows OS (Tested on Windows 10)
@@ -13,5 +14,4 @@ Note: The distance measurement unit used here is called yards, but it is importa
 - Compile using: ```make```
 
 ## Demo
-
 ![GUI Tweaking Nameplate Max Distance Image using ElvUI](https://github.com/marcoadenadai/wow-tbc-243-tweaks/raw/main/demo.png)
