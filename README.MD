@@ -1,6 +1,6 @@
-# World of Warcraft v2.4.3 SetNameplateDistance Tweaker Tool.
+# World of Warcraft v2.4.3 nameplateMaxDistance Tweaker Tool.
 
-Created to change the distance of nameplates since in this client version it is not possible to do so natively. 
+Created to change the distance of nameplates since in this client version it is not possible to do so natively (eg: ```/run SetCVar(“nameplateMaxDistance”, “60”)```). 
 It works on all private servers that uses the original client, **check your server's usage rules before using this tool.**
 
 This tool uses memory hacking techniques, changing the value of the game's memory address referring to the display distance of the nameplates. **Requires administrative permission.**
